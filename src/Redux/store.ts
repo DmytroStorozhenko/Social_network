@@ -1,42 +1,43 @@
 import {AddPostActionType, profileReducer, UpdatePostTextActionType} from "./profile_reducer";
 import {AddMessageActionType, dialogsReducer, UpdateMessageTextActionType} from "./dialogs_reducer";
 
-export type PostType = {
+type PostType = {
     id: number
     text: string
     likesCount: number
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     newPostText: string,
     posts: Array<PostType>
 }
 
-export type DialogType = {
+type DialogType = {
     id: number
     name: string
 }
-export type MessageType = {
+type MessageType = {
     id: number
     text: string
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageText: string
 }
 
-export type ActionsType =
+type ActionsType =
     AddPostActionType |
     UpdatePostTextActionType |
     AddMessageActionType |
     UpdateMessageTextActionType
-export type DispatchType = (action: ActionsType) => void
 
-export type StateType = {
+type DispatchType = (action: ActionsType) => void
+
+type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
-export type StoreType = {
+type StoreType = {
     _state: StateType
     getState: () => StateType
     _rerenderTree: () => void

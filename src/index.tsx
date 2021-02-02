@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {store} from "./Redux/store";
+import {store} from "./Redux/redux-store";
 import ReactDOM from "react-dom";
 import {App} from "./App";
 
@@ -17,7 +17,10 @@ export const renderTree = () => {
 }
 renderTree()
 
-store.subscriber(renderTree)
+
+store.subscribe(() => {
+    renderTree()
+})
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
