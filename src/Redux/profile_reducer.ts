@@ -28,17 +28,20 @@ export function profileReducer(state: ProfilePageType = initialState, action: Ac
                 text: state.newPostText,
                 likesCount: Math.round(Math.random() * 10)
             }
-            state.posts.push(newPost)
-            state.newPostText = ''
-            return state
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            }
 
         case 'UPDATE_NEW_POST_TEXT':
-            state.newPostText = action.newText
-            return state
+            return {...state, newPostText: action.newText}
         default:
             return state
     }
 }
 
-export const addPostAC = () => ({type: 'ADD_POST'}) as const
-export const updatePostTextAC = (newText: string) => ({type: 'UPDATE_NEW_POST_TEXT', newText: newText}) as const
+export const addPostAC = () => ({
+    type: 'ADD_POST'}) as const
+export const updatePostTextAC = (newText: string) => ({
+    type: 'UPDATE_NEW_POST_TEXT', newText}) as const
