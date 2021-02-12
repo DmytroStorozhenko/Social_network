@@ -8,8 +8,6 @@ type MyPostsDispatchType = {
     addPost: () => void
 }
 
-type OwmPropsType = {}
-
 const mapStateToProps = (state: StateType): ProfilePageType => ({
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText
@@ -21,4 +19,4 @@ const mapDispatchToProps = (dispatch: DispatchType): MyPostsDispatchType => ({
 })
 
 export const MyPostsContainer =
-    connect<ProfilePageType, MyPostsDispatchType, OwmPropsType, StateType>(mapStateToProps, mapDispatchToProps)(MyPosts)
+    connect<ProfilePageType, MyPostsDispatchType, {}, StateType>(mapStateToProps, mapDispatchToProps)(MyPosts)

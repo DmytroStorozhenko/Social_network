@@ -1,6 +1,8 @@
-import {AddPostActionType, profileReducer, UpdatePostTextActionType} from "./profile_reducer";
-import {AddMessageActionType, dialogsReducer, UpdateMessageTextActionType} from "./dialogs_reducer";
+import {profileReducer} from "./profile_reducer";
+import {dialogsReducer} from "./dialogs_reducer";
+import {DispatchType} from "./redux-store";
 
+/*
 type PostType = {
     id: number
     text: string
@@ -24,14 +26,6 @@ type DialogsPageType = {
     messages: Array<MessageType>
     newMessageText: string
 }
-
-type ActionsType =
-    AddPostActionType |
-    UpdatePostTextActionType |
-    AddMessageActionType |
-    UpdateMessageTextActionType
-
-type DispatchType = (action: ActionsType) => void
 
 type StateType = {
     profilePage: ProfilePageType
@@ -84,3 +78,4 @@ export const store: StoreType = {
     }
 }
 
+*/

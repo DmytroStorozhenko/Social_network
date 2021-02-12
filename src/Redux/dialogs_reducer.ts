@@ -1,7 +1,7 @@
-import {ActionsType} from "./redux-store";
+type AddMessageActionType = ReturnType<typeof addMessageAC>
+type UpdateMessageTextActionType = ReturnType<typeof updateMessageTextAC>
 
-export type AddMessageActionType = ReturnType<typeof addMessageAC>
-export type UpdateMessageTextActionType = ReturnType<typeof updateMessageTextAC>
+export type DialogsActionsType = AddMessageActionType | UpdateMessageTextActionType
 
 export type DialogType = {
     id: number
@@ -30,7 +30,7 @@ let initialState: DialogsPageType = {
     ],
     newMessageText: ''}
 
-export function dialogsReducer(state: DialogsPageType = initialState, action: ActionsType) {
+export function dialogsReducer(state: DialogsPageType = initialState, action: DialogsActionsType): DialogsPageType {
     switch (action.type) {
         case 'ADD_MESSAGE':
             let newMessage: MessageType = {

@@ -9,8 +9,6 @@ type DialogsDispatchType = {
     addMessage: () => void
 }
 
-type OwmPropsType = {}
-
 const mapStateToProps = (state: StateType): DialogsPageType => ({
     dialogs: state.dialogsPage.dialogs,
     messages: state.dialogsPage.messages,
@@ -23,7 +21,7 @@ const mapDispatchToProps = (dispatch: DispatchType): DialogsDispatchType => ({
 })
 
 export const DialogsContainer =
-    connect<DialogsPageType, DialogsDispatchType, OwmPropsType, StateType>(mapStateToProps, mapDispatchToProps)(Dialogs)
+    connect<DialogsPageType, DialogsDispatchType, {}, StateType>(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 
 
