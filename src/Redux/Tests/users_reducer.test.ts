@@ -26,8 +26,6 @@ beforeEach(() => {
                 followed: false
             }
         ],
-        totalCount: 30,
-        error: null
     }
 })
 

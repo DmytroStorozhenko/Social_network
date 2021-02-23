@@ -3,3 +3,11 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+.currentPage {
+    font-weight: bold;
+}
+
+.page {
+    margin-left: 5px;
+}
