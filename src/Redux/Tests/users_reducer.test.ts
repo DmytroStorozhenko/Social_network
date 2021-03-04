@@ -1,4 +1,4 @@
-import {followUnfollowAC, usersReducer, UsersPageType} from "../users_reducer";
+import {followUnfollow, usersReducer, UsersPageType} from "../users_reducer";
 
 let initialState: UsersPageType
 
@@ -30,7 +30,7 @@ beforeEach(() => {
 })
 
 test('user must be unfollowed', () => {
-        const action = followUnfollowAC(2)
+        const action = followUnfollow(2)
 
         const result = usersReducer(initialState, action)
 
