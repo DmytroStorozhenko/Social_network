@@ -8,29 +8,29 @@ import {
     UsersPageType,
 } from "../../Redux/users_reducer";
 import React from "react";
-import axios from "axios";
 import {Users} from "./Users";
+import {usersAPI} from "../../api/users_api";
 
 type MapDispatchType = UsersPageType
 
-export class UsersContainer extends React.Component<UsersContainerProps> {
+class UsersContainer extends React.Component<UsersContainerProps> {
     componentDidMount() {
         this.props.setFetchingStatus()
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+        usersAPI.getUsers().then(response => {
+            this.props.setFetchingStatus()
             this.props.setUsers(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)
             this.props.setPagesCount(Math.ceil(response.data.totalCount / this.props.pageSize))
-            this.props.setFetchingStatus()
         })
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.setFetchingStatus()
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count${this.props.pageSize}`)
+        this.props.setFetchingStatus()
+        usersAPI.getCurrentPageUsers(pageNumber, this.props.pageSize)
             .then(response => {
-                this.props.setUsers(response.data.items)
                 this.props.setFetchingStatus()
+                this.props.setUsers(response.data.items)
             })
     }
 
@@ -61,9 +61,16 @@ const mapState = (state: StateType): MapDispatchType => ({
     isFetching: state.usersPage.isFetching
 })
 
-const UsersPage = connect(mapState,
-    {followUnfollow, setCurrentPage,setPagesCount, setTotalUsersCount, setUsers, setFetchingStatus})
-
 export type UsersContainerProps = ConnectedProps<typeof UsersPage>
+
+const UsersPage = connect(mapState,
+    {
+        followUnfollow,
+        setCurrentPage,
+        setPagesCount,
+        setTotalUsersCount,
+        setUsers,
+        setFetchingStatus}
+        )
 
 export default UsersPage(UsersContainer)

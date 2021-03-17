@@ -1,6 +1,6 @@
 import {combineReducers, createStore} from "redux";
 import {
-    PostsActionsType,
+    ProfileActionsType,
     ProfilePageType,
     profileReducer,
 } from "./profile_reducer";
@@ -11,7 +11,7 @@ import {
 } from "./dialogs_reducer";
 import {UsersActionsType, UsersPageType, usersReducer} from "./users_reducer";
 
-export type ActionsType =  PostsActionsType | DialogsActionsType | UsersActionsType
+export type ActionsType =  ProfileActionsType | DialogsActionsType | UsersActionsType
 
 export type DispatchType = (action: ActionsType) => void
 

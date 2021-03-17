@@ -1,13 +1,13 @@
 import React, {ChangeEvent} from 'react';
 import styles from "./MyPosts.module.css"
 import {Post} from "./Post/Post";
-import {PostType } from "../../../Redux/profile_reducer";
+import {PostType} from "../../../Redux/profile_reducer";
 
 type PostsPropsType = {
     posts: Array<PostType>
     newPostText: string
     addPost: () => void
-    postChange: (newValue: string) => void
+    updatePostText: (newValue: string) => void
 }
 
 export const MyPosts = (props: PostsPropsType) => {
@@ -22,7 +22,7 @@ export const MyPosts = (props: PostsPropsType) => {
         let newValue = event.currentTarget.value
         debugger
         if (newValue) {
-            props.postChange(newValue)
+            props.updatePostText(newValue)
         }
     }
 

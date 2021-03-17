@@ -1,16 +1,41 @@
-import React from 'react';
-import classes from "./ProfileInfo.module.css"
+import React, {FC} from 'react';
+import styles from "./ProfileInfo.module.css"
+import {ProfileResponseType} from "../../../api/profile_api";
 
-export const ProfileInfo = () => {
+type ProfileInfoType = {
+    profile: ProfileResponseType
+}
+
+export const ProfileInfo: FC<ProfileInfoType> = (props) => {
+    let contacts = Object.entries(props.profile.contacts)
+    let lookingForAJobDescription = props.profile.lookingForAJobDescription
     return (
-        <div className={classes.content}>
-            <div>
-                <img
-                    src="https://img.freepik.com/free-vector/gradient-geometric-shape-background_78532-307.jpg?size=626&ext=jpg"
-                    alt="start_img"/>
+        <div className={styles.profile}>
+            <div className={styles.avatar}>
+                <img src={props.profile.photos.large} alt="there should have been an avatar..."/>
             </div>
-            <div className={classes.descriptionBlock}>
-                <div>ava + description</div>
+            <div className={styles.description}>
+                <div>{props.profile.fullName}</div>
+                <div>
+                    <p>Looking for a job: <span>
+                        <input type="checkbox" checked={props.profile.lookingForAJob}/>
+                        {props.profile.lookingForAJob ? 'yes' : 'no'}
+                    </span>
+                    </p>
+                    <p>{lookingForAJobDescription &&
+                        `about this: ${lookingForAJobDescription}`}</p>
+                </div>
+            </div>
+            <div className={styles.contacts}>
+                <h3>Contacts:</h3>
+                <ul>
+                    {contacts.map(item => (
+                            item[1] && <li>
+                                {`${item[0]}: `} <a href={item[1]}>{item[1]}</a>
+                            </li>
+                        )
+                    )}
+                </ul>
             </div>
         </div>
     )

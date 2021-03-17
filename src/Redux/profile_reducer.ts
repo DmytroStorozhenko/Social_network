@@ -1,7 +1,13 @@
-type AddPostActionType = ReturnType<typeof addPostAC>
-type UpdatePostTextActionType = ReturnType<typeof updatePostTextAC>
+import {ProfileResponseType} from "../api/profile_api";
 
-export type PostsActionsType = AddPostActionType | UpdatePostTextActionType
+type AddPostActionType = ReturnType<typeof addPost>
+type UpdatePostTextActionType = ReturnType<typeof updatePostText>
+type setProfileActionType = ReturnType<typeof setProfile>
+
+export type ProfileActionsType =
+    AddPostActionType |
+    UpdatePostTextActionType |
+    setProfileActionType
 
 export type PostType = {
     id: number
@@ -9,19 +15,26 @@ export type PostType = {
     likesCount: number
 }
 export type ProfilePageType = {
+    profile: ProfileResponseType | null
     newPostText: string,
     posts: Array<PostType>
 }
 
 let initialState: ProfilePageType = {
+    profile: null,
     newPostText: '',
     posts: [
         {id: 1, text: "Hi, how are you?", likesCount: 1},
         {id: 2, text: "It's my first post.", likesCount: 3}
     ]}
 
-export function profileReducer(state: ProfilePageType = initialState, action: PostsActionsType): ProfilePageType  {
+export function profileReducer(state: ProfilePageType = initialState, action: ProfileActionsType): ProfilePageType  {
     switch (action.type) {
+        case "SET_PROFILE": {
+            return {
+                ...state, profile: action.profile
+            }
+        }
         case 'ADD_POST':
             let newPost: PostType = {
                 id: state.posts.length + 1,
@@ -41,7 +54,13 @@ export function profileReducer(state: ProfilePageType = initialState, action: Po
     }
 }
 
-export const addPostAC = () => ({
+
+export const setProfile = (profile: ProfileResponseType) => ({
+    type: 'SET_PROFILE', profile}) as const
+
+export const addPost = () => ({
     type: 'ADD_POST'}) as const
-export const updatePostTextAC = (newText: string) => ({
+
+export const updatePostText = (newText: string) => ({
     type: 'UPDATE_NEW_POST_TEXT', newText}) as const
+

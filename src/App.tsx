@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
 import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
-import {Profile} from "./components/Profile/Profile";
 import {Header} from "./components/Header/Header";
 import {BrowserRouter, Route} from 'react-router-dom';
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersPage from "./components/Users/UsersContainer"
+import ProfilePage from "./components/Profile/ProfileContainer"
 
 export const App:FC = () => {
     return (
@@ -14,13 +14,13 @@ export const App:FC = () => {
                 <Header/>
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
-                    <Route path={'/profile'} render={() =>
-                        <Profile/>
+                    <Route path={'/profile/:userId'} render={() =>
+                        <ProfilePage/>
                     }/>
                     <Route path={'/dialogs'} render={() =>
                         <DialogsContainer/>
                     }/>
-                    <Route path={'/Users'} render={() =>
+                    <Route path={'/Users/'} render={() =>
                         <UsersPage/>
                     }/>
                 </div>

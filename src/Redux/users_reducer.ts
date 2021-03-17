@@ -1,3 +1,5 @@
+import {UserType} from "../api/users_api";
+
 type FollowUnfollowActionType = ReturnType<typeof followUnfollow>
 type GetUsersActionType = ReturnType<typeof setUsers>
 type SetCurrentPageType = ReturnType<typeof setCurrentPage>
@@ -12,17 +14,6 @@ export type UsersActionsType =
     SetPagesCountType |
     SetTotalUsersCountType |
     setFetchingStatusType
-
-export type UserType = {
-    name: string
-    id: number,
-    photos: {
-        small: string | null
-        large: string | null
-    },
-    status: string | null
-    followed: boolean
-}
 
 export type UsersPageType = {
     items: Array<UserType>

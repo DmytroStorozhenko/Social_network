@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import styles from "./Users.module.css"
 import userPhoto from "../../accets//img/user_avatar_small.png"
-import {UserType} from "../../Redux/users_reducer";
 import {Preloader} from "../Common/Preloader";
+import {UserType} from "../../api/users_api";
 
 type UsersPropsType = {
     users: Array<UserType>
